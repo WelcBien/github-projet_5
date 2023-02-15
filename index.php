@@ -11,9 +11,9 @@ use Application\Controllers\Contact;
 use Application\Controllers\About;
 use Application\Controllers\Login;
 use Application\Controllers\Signup;
-use Application\Controllers\AddPost;
-use Application\Controllers\UpdatePost;
-use Application\Controllers\DeletePost;
+// use Application\Controllers\AddPost;
+// use Application\Controllers\UpdatePost;
+// use Application\Controllers\DeletePost;
 use Application\Controllers\DeleteComment;
 use Application\Controllers\Logout;
 use Application\Controllers\HomeAdmin;
@@ -54,12 +54,12 @@ try {
             
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $identifier = $_GET['id'];
-                (new UpdatePost())->show($identifier);
+                (new Post())->showUpdatePost($identifier);
             } else {
                 throw new Exception('Aucun identifiant de post envoyé');
             }
         }elseif ($_GET['action'] === 'updatePost-confirm') {
-            (new UpdatePost())->execute();
+            (new Post())->executeUpdatePost();
             
         }elseif ($_GET['action'] === 'addPost') {
             (new Post())->showAddPost();
@@ -68,7 +68,7 @@ try {
             (new Post())->executeAddPost();
             
         }elseif ($_GET['action'] === 'deletePost') {
-            (new DeletePost())->execute();
+            (new Post())->executeDeletePost();
 
         }elseif ($_GET['action'] === 'deleteComment') {
             (new DeleteComment())->execute();

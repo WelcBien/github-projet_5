@@ -29,18 +29,18 @@
          </div>        
          <div>
             <label for="chapo">Chapo</label><br />
-            <textarea id="chapo" name="chapo"><?= nl2br(htmlspecialchars($post->chapo)) ?></textarea>
+            <textarea id="chapo" name="chapo"><?= htmlspecialchars($post->chapo) ?></textarea>
          </div>
          <div>
             <label for="content">Contenu</label><br />
-            <textarea id="content" name="content"><?= nl2br(htmlspecialchars($post->content)) ?></textarea>
+            <textarea id="content" name="content"><?= htmlspecialchars($post->content) ?></textarea>
          </div>
          <div>
             <label for="author">Auteur</label><br />
             <input type="text" class="form-control" name="author" value="<?= htmlspecialchars($post->author) ?>">
          </div>  
          <div>
-            <button type="submit" class="btn btn-warning" name="submit">Modifier</button>         
+            <button type="submit" class="btn btn-warning" name="submit" href="index.php?action=updatePost&id=<?= $post->identifier ?>">Modifier</button>         
          </div>      
       </form>
    </div>
