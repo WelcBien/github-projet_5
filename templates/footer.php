@@ -39,7 +39,7 @@
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>WelcDev</h3>
-                        <a href="index.php?action=login"><p>Développeur Web </p></a>
+                        <a href="#"><p>Développeur Web </p></a>
                     </div>
                 </div>  
             </div>
@@ -54,7 +54,6 @@
             </div>
         </div>
 </footer>
-
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

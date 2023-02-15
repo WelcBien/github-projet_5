@@ -1,31 +1,45 @@
 <?php
 
-namespace Application\Controllers\Post;
+namespace Application\Controllers;
 
-require_once('src/lib/Database.php');
-require_once('src/model/Post.php');
+use Application\Lib\DatabaseConnection;
+use Application\Model\CommentRepository;
+use Application\Model\PostRepository;
 
-use Application\Lib\Database\DatabaseConnection;
-use Application\Model\Post\PostRepository;
-
-class AddPost
+class Post
 {
-    public function show()
+    public function showPost(string $identifier)
+    {
+        $connection = new DatabaseConnection();
+
+        $postRepository = new PostRepository();
+        $postRepository->connection = $connection;
+        $post = $postRepository->getPost($identifier);
+
+        $commentRepository = new CommentRepository();
+        $commentRepository->connection = $connection;
+        $comments = $commentRepository->getComments($identifier);
+
+        require('templates/post.php');
+    }
+
+    public function showAddPost()
     {
         require_once('templates/addPost.php');
     }
-    public function execute()
+    public function executeAddPost()
     {
         
         $title = null;
         $chapo = null;
-        $content = null;        
+        $content = null;
         $author = null;        
         if (!empty($_POST['title']) && !empty($_POST['chapo']) && !empty($_POST['content']) && !empty($_POST['author'])) {            
             $title = $_POST['title'];
             $chapo = $_POST['chapo'];
             $content = $_POST['content'];
-            $author = $_POST['author'];            
+            $author = $_POST['author'];
+
         } else {
             throw new \Exception('Veuillez remplir tous les champs du formulaire.');
         }
@@ -39,4 +53,4 @@ class AddPost
             header('Location: index.php?action=post&id=' . $success);            
         }
     }
- }
+}

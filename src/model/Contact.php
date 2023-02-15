@@ -1,21 +1,14 @@
 <?php
 
-namespace Application\Model\Contact;
+namespace Application\Model;
 
-require_once('src/lib/Database.php');
-
-use Application\Lib\Database\DatabaseConnection;
-
-class ContactRepository 
+class Contact
 {
-    public DatabaseConnection $connection;
-
-    // Enregistrer le message 
-    public function send($lastname, $firstname, $email, $msg) 
-    {
-        $statement = $this->connection->getConnection()->prepare(
-            'INSERT INTO contact (lastname, firstname, email, msg) VALUES ( ?, ?, ?, ?)'
-        );
-        $statement->execute([$lastname, $firstname, $email, $msg]);
-    }
+    public string $identifier;   
+    public string $lastname;
+    public string $firstname;    
+    public string $email;
+    public string $message;
+    public string $frenchCreationDate;
 }
+

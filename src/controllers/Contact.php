@@ -2,11 +2,8 @@
 
 namespace Application\Controllers;
 
-require_once('src/model/Contact.php');
-require_once('src/lib/Database.php');
-
-use Application\Model\Contact\ContactRepository;
-use Application\Lib\Database\DatabaseConnection;
+use Application\Model\ContactRepository;
+use Application\Lib\DatabaseConnection;
 
 class Contact
 {
@@ -16,36 +13,55 @@ class Contact
     }
     public function traitement()
     {
-       if(!empty($_POST['lastname']) && isset($_POST['firstname']) && isset($_POST['email']) && isset($_POST['msg'])) 
-       { 
-            $lastname = htmlspecialchars($_POST['lastname']);
-            $firstname = htmlspecialchars($_POST['firstname']); 
-            $email = htmlspecialchars($_POST['email']); 
-            $msg = htmlspecialchars($_POST['msg']);
+       if(!empty($_POST['lastname']) && !empty($_POST['firstname']) && !empty($_POST['email']) && !empty($_POST['msg'])) 
+       {       
+        $lastname = htmlspecialchars($_POST['lastname']);
+        $firstname = htmlspecialchars($_POST['firstname']);    
+        $email = htmlspecialchars($_POST['email']);
+        $msg = htmlspecialchars($_POST['msg']);                
         
             if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
             }else{
                 throw new \Exception('Email non valide');                
-            }
+            }      
         
-        } else {
-            throw new \Exception('Merci de remplir tous les champs !');           
-        }   
         $connection = new DatabaseConnection();
         $contactRepository = new ContactRepository();
         $contactRepository->connection = $connection;                        
         $contactRepository->send($_POST['lastname'], $_POST['firstname'], $_POST['email'], $_POST['msg']); 
 
-        // code mail
-        $dest = "welcdev@gmail.com";
-        $objet = "Test";
-        $message = "Hello world";
-        $entetes = "Essaie";
+        // Envoyer l'email
 
-        mail($dest,$objet,$message,$entetes);
+        // Le destinataire
+        $to = "welcdev@gmail.com";
 
-        header("Location: index.php?action=contact&send=ok");       
-        }   
+        // Objet du mail
+        $subject = "Vous avez reçu un message de : " . $email;
+
+        $message = "
+            <p>De <strong> " .$email. "</strong><p>
+            <p><strong>Nom :</strong> " .$lastname. "</p>
+            <p><strong>Téléphone :</strong> " .$firstname. "</p>
+            <p><strong>Message :</strong> " .$msg. "</p>
+        ";
+
+        // Définir le type de contenu lors de l'envoi d'un e-mail HTML
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        // L'en-tête
+        $headers .= 'From: <' .$email. '>' . "\r\n";        
+            
+        // envoi du mail
+        mail($to,$subject,$message,$headers);
+        
+            header("Location: index.php?action=contact&send=ok");            
+
+        } else {
+            throw new \Exception('Merci de remplir tous les champs !');           
+        }    
+                 
+    }   
     
 }

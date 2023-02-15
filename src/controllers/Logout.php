@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Controllers\Connexion;
+namespace Application\Controllers;
 
 class Logout
 {

@@ -2,11 +2,8 @@
 
 namespace Application\Controllers;
 
-require_once('src/lib/Database.php');
-require_once('src/model/Comment.php');
-
-use Application\Lib\Database\DatabaseConnection;
-use Application\Model\Comment\CommentRepository;
+use Application\Lib\DatabaseConnection;
+use Application\Model\CommentRepository;
 
 class UpdateComment
 {
@@ -31,7 +28,6 @@ class UpdateComment
             }            
 
         }
-
         // Sinon, il affiche le formulaire.
         $commentRepository = new CommentRepository();
         $commentRepository->connection = new DatabaseConnection();

@@ -1,12 +1,9 @@
 <?php
 
-namespace Application\Controllers\Connexion;
+namespace Application\Controllers;
 
-require_once('src/lib/Database.php');
-require_once('src/model/Comment.php');
-
-use Application\Lib\Database\DatabaseConnection;
-use Application\Model\Comment\commentRepository;
+use Application\Lib\DatabaseConnection;
+use Application\Model\CommentRepository;
 
 class HomeAdmin
 {
@@ -15,7 +12,7 @@ class HomeAdmin
     {
         $connection = new DatabaseConnection();
 
-        $commentRepository = new commentRepository();
+        $commentRepository = new CommentRepository();
         $commentRepository->connection = $connection;
         $comments = $commentRepository->getCommentsInvalid();
 

@@ -1,12 +1,9 @@
 <?php
 
-namespace Application\Controllers\Post;
+namespace Application\Controllers;
 
-require_once('src/lib/Database.php');
-require_once('src/model/Post.php');
-
-use Application\Lib\Database\DatabaseConnection;
-use Application\Model\Post\PostRepository;
+use Application\Lib\DatabaseConnection;
+use Application\Model\PostRepository;
 
 class DeletePost
 {

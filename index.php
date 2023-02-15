@@ -1,37 +1,23 @@
 <?php
 session_start();
 
-require_once('src/controllers/comment/Add.php');
-require_once('src/controllers/comment/Update.php');
-require_once('src/controllers/Homepage.php');
-require_once('src/controllers/Post/Post.php');
-require_once('src/controllers/Contact.php');
-require_once('src/controllers/About.php');
-require_once('src/controllers/Connexion/Login.php');
-require_once('src/controllers/Connexion/Signup.php');
-require_once('src/controllers/Post/AddPost.php');
-require_once('src/controllers/Post/UpdatePost.php');
-require_once('src/controllers/Post/DeletePost.php');
-require_once('src/controllers/Comment/DeleteComment.php');
-require_once('src/controllers/Connexion/Logout.php');
-require_once('src/controllers/Connexion/HomeAdmin.php');
-require_once('src/controllers/Comment/Valide.php');
+require_once('vendor/autoload.php');
 
 use Application\Controllers\AddComment;
 use Application\Controllers\UpdateComment;
 use Application\Controllers\Homepage;
-use Application\Controllers\Post\Post;
+use Application\Controllers\Post;
 use Application\Controllers\Contact;
 use Application\Controllers\About;
-use Application\Controllers\Connexion\Login;
-use Application\Controllers\Connexion\Signup;
-use Application\Controllers\Post\AddPost;
-use Application\Controllers\Post\UpdatePost;
-use Application\Controllers\Post\DeletePost;
-use Application\Controllers\Comment\DeleteComment;
-use Application\Controllers\Connexion\Logout;
-use Application\Controllers\Connexion\HomeAdmin;
-use Application\Controllers\Comment\Valide;
+use Application\Controllers\Login;
+use Application\Controllers\Signup;
+use Application\Controllers\AddPost;
+use Application\Controllers\UpdatePost;
+use Application\Controllers\DeletePost;
+use Application\Controllers\DeleteComment;
+use Application\Controllers\Logout;
+use Application\Controllers\HomeAdmin;
+use Application\Controllers\Valide;
 
 try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
@@ -39,7 +25,7 @@ try {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $identifier = $_GET['id'];
 
-                (new Post())->execute($identifier);
+                (new Post())->showPost($identifier);
             } else {
                 throw new Exception('Aucun identifiant de post envoyé');
             }
@@ -73,13 +59,13 @@ try {
                 throw new Exception('Aucun identifiant de post envoyé');
             }
         }elseif ($_GET['action'] === 'updatePost-confirm') {
-            (new AddPost())->execute();
+            (new UpdatePost())->execute();
             
         }elseif ($_GET['action'] === 'addPost') {
-            (new AddPost())->show();
+            (new Post())->showAddPost();
 
         }elseif ($_GET['action'] === 'addPost-confirm') {
-            (new AddPost())->execute();
+            (new Post())->executeAddPost();
             
         }elseif ($_GET['action'] === 'deletePost') {
             (new DeletePost())->execute();

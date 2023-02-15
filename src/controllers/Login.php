@@ -1,12 +1,9 @@
 <?php
 
-namespace Application\Controllers\Connexion;
+namespace Application\Controllers;
 
-require_once('src/model/User.php');
-require_once('src/lib/Database.php');
-
-use Application\Model\User\UserRepository;
-use Application\Lib\Database\DatabaseConnection;
+use Application\Model\UserRepository;
+use Application\Lib\DatabaseConnection;
 
 class Login
 {
@@ -26,16 +23,14 @@ class Login
             $user = $userRepository->userExist($_POST['pseudo']);        
             
             if(password_verify($_POST['password'], $user['password'])) 
-            { 
+            {                     
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo']; 
                 $_SESSION['admin'] = $user['admin'];
 
-                header("Location: index.php");
-            
+                header("Location: index.php");                            
             } else {
-                throw new \Exception('Mot de passe invalide !');              
-                    
+                throw new \Exception('Mot de passe invalide !');
             }   
         
         } else {

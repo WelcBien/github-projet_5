@@ -1,14 +1,11 @@
 <?php
 
-namespace Application\Controllers\Comment;
+namespace Application\Controllers;
 
-require_once('src/lib/Database.php');
-require_once('src/model/Comment.php');
+use Application\Lib\DatabaseConnection;
+use Application\Model\CommentRepository;
 
-use Application\Lib\Database\DatabaseConnection;
-use Application\Model\Comment\CommentRepository;
-
-class DeleteComment
+class Valide
 {
     public function execute()
     {       
@@ -18,15 +15,15 @@ class DeleteComment
         } else {
             throw new \Exception('Aucun commentaire n\'a été trouvé !');
         }
-
         $commentRepository = new CommentRepository();
         $commentRepository->connection = new DatabaseConnection();
-        $success = $commentRepository->deleteComment($id);
+        $success = $commentRepository->commentValide($id);
         if (!$success) {
-            throw new \Exception('Impossible de supprimer le commentaire !');
+            throw new \Exception('Impossible de valider le commentaire !');
         } else {
             
-            header('Location: index.php?action=homeAdmin');           
+            header('Location: index.php?action=homeAdmin');                      
         }
+
     }
 }
