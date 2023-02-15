@@ -21,6 +21,10 @@ $title = "Modifier un post"; ?>
          <textarea id="content" name="content"><?= nl2br(htmlspecialchars($post->content)) ?></textarea>
       </div>
       <div>
+         <label for="author">Auteur</label><br />
+         <input type="text" class="form-control" name="author" value="<?= htmlspecialchars($post->author) ?>">
+      </div>        
+      <div>
          <button type="submit" class="btn btn-warning" name="submit">Modifier</button>         
       </div>      
    </form>

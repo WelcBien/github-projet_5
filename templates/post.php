@@ -80,6 +80,7 @@
                             <?= nl2br(htmlspecialchars($post->content)) ?>
                         </p>
                         <p><em>le <?= $post->frenchCreationDate; ?></em></p>
+                        <p><em>de <?= htmlspecialchars($post->author) ?></em></p>
                         <?php if(isset($_SESSION['id']) && $_SESSION['admin'] == 1) { ?>                                                    
                         <a type="submit" class="btn btn-warning text-uppercase" href="index.php?action=updatePost&id=<?= $post->identifier ?>">Modifier</a>                        
                         <a type="submit" class="btn btn-danger text-uppercase" href="index.php?action=deletePost&id=<?= $post->identifier ?>">Supprimer</a>                        
