@@ -2,16 +2,27 @@
 
 namespace Application\Controllers;
 
-use Application\Model\UserRepository;
 use Application\Lib\DatabaseConnection;
+use Application\Model\UserRepository;
 
-class Signup
+class User
 {
-    public function execute()
+    public function executeUser(string $identifier)
+    {
+        $connection = new DatabaseConnection();
+
+        $userRepository = new UserRepository();
+        $userRepository->connection = $connection;
+        $user = $userRepository->getUser($identifier);        
+
+        require('index.php');
+    }
+
+    public function executeSignup()
     {    
         require('templates/signup.php');
     }
-    public function traitement()
+    public function traitementSignup()
     {
        if(!empty($_POST['pseudo']) && !empty($_POST['lastname']) && !empty($_POST['firstname']) && !empty($_POST['password']) && !empty($_POST['email'])) 
        {     
@@ -34,6 +45,4 @@ class Signup
         }            
 
     }   
-        
 }
-

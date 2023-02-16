@@ -3,12 +3,13 @@ session_start();
 
 require_once('vendor/autoload.php');
 
+use Application\Controllers\User;
 use Application\Controllers\AddComment;
 use Application\Controllers\UpdateComment;
 use Application\Controllers\Homepage;
 use Application\Controllers\Post;
 use Application\Controllers\Contact;
-use Application\Controllers\About;
+// use Application\Controllers\About;
 use Application\Controllers\Login;
 use Application\Controllers\Signup;
 // use Application\Controllers\AddPost;
@@ -89,10 +90,10 @@ try {
             (new Login())->traitement();
 
         }elseif ($_GET['action'] === 'signup') {            
-            (new Signup())->execute();
+            (new User())->executeSignup();
 
         }elseif ($_GET['action'] === 'signup-confirm') {            
-            (new Signup())->traitement();
+            (new User())->traitementSignup();
 
         }elseif ($_GET['action'] === 'logout') {            
             (new logout())->traitement();      
@@ -102,6 +103,12 @@ try {
             
         }elseif ($_GET['action'] === 'valide') { 
             (new Valide())->execute();
+
+
+
+        }elseif ($_GET['action'] === 'User') { 
+            (new User())->executeUser($identifier);
+
 
         } else {
             throw new Exception("La page que vous recherchez n'existe pas.");
