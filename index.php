@@ -80,7 +80,7 @@ try {
             (new Contact())->traitement(); 
 
         }elseif ($_GET['action'] === 'about') {            
-            (new About())->execute();
+            (new Homepage())->executeAbout();
 
         }elseif ($_GET['action'] === 'login') {            
             (new Login())->execute();

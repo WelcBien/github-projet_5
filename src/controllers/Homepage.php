@@ -17,4 +17,9 @@ class Homepage
    
         require('templates/homepage.php');
     }
+
+    public function executeAbout()
+    {    
+        require('templates/about.php');
+    }
 }
