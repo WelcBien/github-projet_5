@@ -9,7 +9,6 @@ use Application\Controllers\UpdateComment;
 use Application\Controllers\Homepage;
 use Application\Controllers\Post;
 use Application\Controllers\Contact;
-use Application\Controllers\DeleteComment;
 use Application\Controllers\HomeAdmin;
 
 try {
@@ -69,7 +68,7 @@ try {
             (new Post())->executeDeletePost();
 
         }elseif ($_GET['action'] === 'deleteComment') {
-            (new DeleteComment())->execute();
+            (new Comment())->executeDeleteComment();
             
         }elseif ($_GET['action'] === 'contact') {           
             (new Contact())->execute(); 
