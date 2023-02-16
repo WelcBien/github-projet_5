@@ -9,14 +9,7 @@ use Application\Controllers\UpdateComment;
 use Application\Controllers\Homepage;
 use Application\Controllers\Post;
 use Application\Controllers\Contact;
-// use Application\Controllers\About;
-// use Application\Controllers\Login;
-// use Application\Controllers\Signup;
-// use Application\Controllers\AddPost;
-// use Application\Controllers\UpdatePost;
-// use Application\Controllers\DeletePost;
 use Application\Controllers\DeleteComment;
-use Application\Controllers\Logout;
 use Application\Controllers\HomeAdmin;
 use Application\Controllers\Valide;
 
@@ -96,7 +89,7 @@ try {
             (new User())->traitementSignup();
 
         }elseif ($_GET['action'] === 'logout') {            
-            (new logout())->traitement();      
+            (new User())->traitementLogout();      
             
         }elseif ($_GET['action'] === 'homeAdmin') {           
             (new HomeAdmin())->show(); 

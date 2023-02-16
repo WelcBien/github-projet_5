@@ -76,4 +76,11 @@ class User
         }
      
      }
+
+     public function traitementLogout()
+    {   
+        $_SESSION = [];
+        session_destroy();
+        header('Location: index.php');
+    }
 }
