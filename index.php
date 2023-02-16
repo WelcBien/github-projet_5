@@ -10,8 +10,8 @@ use Application\Controllers\Homepage;
 use Application\Controllers\Post;
 use Application\Controllers\Contact;
 // use Application\Controllers\About;
-use Application\Controllers\Login;
-use Application\Controllers\Signup;
+// use Application\Controllers\Login;
+// use Application\Controllers\Signup;
 // use Application\Controllers\AddPost;
 // use Application\Controllers\UpdatePost;
 // use Application\Controllers\DeletePost;
@@ -84,10 +84,10 @@ try {
             (new Homepage())->executeAbout();
 
         }elseif ($_GET['action'] === 'login') {            
-            (new Login())->execute();
+            (new User())->executeLogin();
         
         }elseif ($_GET['action'] === 'login_confirm') {            
-            (new Login())->traitement();
+            (new User())->traitementLogin();
 
         }elseif ($_GET['action'] === 'signup') {            
             (new User())->executeSignup();
@@ -103,8 +103,6 @@ try {
             
         }elseif ($_GET['action'] === 'valide') { 
             (new Valide())->execute();
-
-
 
         }elseif ($_GET['action'] === 'User') { 
             (new User())->executeUser($identifier);
