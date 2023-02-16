@@ -5,7 +5,6 @@ require_once('vendor/autoload.php');
 
 use Application\Controllers\User;
 use Application\Controllers\Comment;
-use Application\Controllers\UpdateComment;
 use Application\Controllers\Homepage;
 use Application\Controllers\Post;
 use Application\Controllers\Contact;
@@ -37,7 +36,7 @@ try {
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $input = $_POST;
                 }
-                (new UpdateComment())->execute($identifier, $input);
+                (new Comment())->executeUpdateComment($identifier, $input);
             } else {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
             }       
