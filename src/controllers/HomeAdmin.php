@@ -7,7 +7,7 @@ use Application\Model\CommentRepository;
 
 class HomeAdmin
 {
-    public function show()
+    public function showHomeAdmin()
 
     {
         $connection = new DatabaseConnection();
@@ -18,7 +18,7 @@ class HomeAdmin
 
         require_once('templates/homeAdmin.php');
     }
-    public function execute()
+    public function executeHomeAdmin()
     {
         $valide = null;        
         if (isset($_GET['valide']) && !empty($_GET['valide'])) {            
@@ -32,8 +32,28 @@ class HomeAdmin
         $commentRepository->connection = $connection;
 
         $comment = $commentRepository->commentValide($_GET['valide']);
-            }            
-
+    }
+    
+    public function executeValide()
+    {       
+        if (isset($_GET['id']) &&!empty($_GET['id']))
+         {            
+              $id = $_GET['id'];          
+        } else {
+            throw new \Exception('Aucun commentaire n\'a été trouvé !');
         }
+        $commentRepository = new CommentRepository();
+        $commentRepository->connection = new DatabaseConnection();
+        $success = $commentRepository->commentValide($id);
+        if (!$success) {
+            throw new \Exception('Impossible de valider le commentaire !');
+        } else {
+            
+            header('Location: index.php?action=homeAdmin');                      
+        }
+
+    }
+
+}
 
 

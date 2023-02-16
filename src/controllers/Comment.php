@@ -5,9 +5,20 @@ namespace Application\Controllers;
 use Application\Lib\DatabaseConnection;
 use Application\Model\CommentRepository;
 
-class AddComment
+class Comment
 {
-    public function execute(string $post, array $input)
+    public function executeComment(string $identifier)
+    {
+        $connection = new DatabaseConnection();
+
+        $commentRepository = new CommentRepository();
+        $commentRepository->connection = $connection;
+        $comment = $commentRepository->getComment($identifier);        
+
+        require('index.php');
+    }
+
+    public function executeAddComment(string $post, array $input)
     {
         
         $comment = null;        

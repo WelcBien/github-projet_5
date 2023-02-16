@@ -4,14 +4,13 @@ session_start();
 require_once('vendor/autoload.php');
 
 use Application\Controllers\User;
-use Application\Controllers\AddComment;
+use Application\Controllers\Comment;
 use Application\Controllers\UpdateComment;
 use Application\Controllers\Homepage;
 use Application\Controllers\Post;
 use Application\Controllers\Contact;
 use Application\Controllers\DeleteComment;
 use Application\Controllers\HomeAdmin;
-use Application\Controllers\Valide;
 
 try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
@@ -27,7 +26,7 @@ try {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $identifier = $_GET['id'];
 
-                (new AddComment())->execute($identifier, $_POST);
+                (new comment())->executeAddComment($identifier, $_POST);
             } else {
                 throw new Exception('Aucun identifiant de post envoyé');
             }
@@ -52,6 +51,11 @@ try {
             } else {
                 throw new Exception('Aucun identifiant de post envoyé');
             }
+
+        }elseif ($_GET['action'] === 'Comment') { 
+            (new Comment())->executeComment($identifier);
+
+
         }elseif ($_GET['action'] === 'updatePost-confirm') {
             (new Post())->executeUpdatePost();
             
@@ -92,10 +96,10 @@ try {
             (new User())->traitementLogout();      
             
         }elseif ($_GET['action'] === 'homeAdmin') {           
-            (new HomeAdmin())->show(); 
+            (new HomeAdmin())->showHomeAdmin(); 
             
         }elseif ($_GET['action'] === 'valide') { 
-            (new Valide())->execute();
+            (new HomeAdmin())->executeValide();
 
         }elseif ($_GET['action'] === 'User') { 
             (new User())->executeUser($identifier);
