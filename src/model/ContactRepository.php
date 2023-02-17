@@ -7,8 +7,7 @@ use Application\Lib\DatabaseConnection;
 class ContactRepository 
 {
     public DatabaseConnection $connection;
-
-    // Enregistrer le message 
+     
     public function send($lastname, $firstname, $email, $msg) 
     {
         $statement = $this->connection->getConnection()->prepare(

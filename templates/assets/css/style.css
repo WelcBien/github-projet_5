@@ -158,18 +158,6 @@ p {
   margin-bottom: 1rem;  
 }
 
-.msg {
-  color: green;
-}
-
-.msg_er {
-  color: red;
-}
-
-.msg_b {
-  color: #0d6efd;
-}
-
 .comment {
   padding-bottom: 1rem;
 }

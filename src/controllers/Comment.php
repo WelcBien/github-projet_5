@@ -10,7 +10,6 @@ class Comment
     public function executeComment(string $identifier)
     {
         $connection = new DatabaseConnection();
-
         $commentRepository = new CommentRepository();
         $commentRepository->connection = $connection;
         $comment = $commentRepository->getComment($identifier);        
@@ -19,8 +18,7 @@ class Comment
     }
 
     public function executeAddComment(string $post, array $input)
-    {
-        
+    {        
         $comment = null;        
         if (!empty($input['comment'])) {            
             $comment = $input['comment'];            

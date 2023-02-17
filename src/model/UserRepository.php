@@ -66,7 +66,7 @@ class UserRepository
         return $statement->fetch();
     }
 
-    //vérification de l'utilisateur dans la base de donnée 
+    //vérification de l'utilisateur dans la bdd 
     public function userExist($pdeudo)
     {
         $statement = $this->connection->getConnection()->prepare(

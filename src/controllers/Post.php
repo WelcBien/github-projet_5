@@ -11,7 +11,6 @@ class Post
     public function showPost(string $identifier)
     {
         $connection = new DatabaseConnection();
-
         $postRepository = new PostRepository();
         $postRepository->connection = $connection;
         $post = $postRepository->getPost($identifier);
@@ -28,8 +27,7 @@ class Post
         require_once('templates/addPost.php');
     }
     public function executeAddPost()
-    {
-        
+    {        
         $title = null;
         $chapo = null;
         $content = null;
@@ -78,7 +76,6 @@ class Post
 
     {
         $connection = new DatabaseConnection();
-
         $postRepository = new PostRepository();
         $postRepository->connection = $connection;
         $post = $postRepository->getPost($id);

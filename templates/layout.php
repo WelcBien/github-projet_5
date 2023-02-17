@@ -35,7 +35,7 @@
                 </div>
             </div>
         </nav>   
-<?= $content ?>
+    <?= $content ?>
     </body>
 </html>    
         

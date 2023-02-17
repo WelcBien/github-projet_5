@@ -15,7 +15,6 @@ try {
         if ($_GET['action'] === 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $identifier = $_GET['id'];
-
                 (new Post())->showPost($identifier);
             } else {
                 throw new Exception('Aucun identifiant de post envoyé');
@@ -23,7 +22,6 @@ try {
         } elseif ($_GET['action'] === 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $identifier = $_GET['id'];
-
                 (new comment())->executeAddComment($identifier, $_POST);
             } else {
                 throw new Exception('Aucun identifiant de post envoyé');
@@ -39,20 +37,20 @@ try {
                 (new Comment())->executeUpdateComment($identifier, $input);
             } else {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
-            }       
-
-        }elseif ($_GET['action'] === 'updatePost') {
+            }
+        }elseif ($_GET['action'] === 'Comment') { 
+            (new Comment())->executeComment($identifier);
             
+        }elseif ($_GET['action'] === 'deleteComment') {
+            (new Comment())->executeDeleteComment();            
+
+        }elseif ($_GET['action'] === 'updatePost') {            
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $identifier = $_GET['id'];
                 (new Post())->showUpdatePost($identifier);
             } else {
                 throw new Exception('Aucun identifiant de post envoyé');
             }
-
-        }elseif ($_GET['action'] === 'Comment') { 
-            (new Comment())->executeComment($identifier);
-
 
         }elseif ($_GET['action'] === 'updatePost-confirm') {
             (new Post())->executeUpdatePost();
@@ -65,9 +63,9 @@ try {
             
         }elseif ($_GET['action'] === 'deletePost') {
             (new Post())->executeDeletePost();
-
-        }elseif ($_GET['action'] === 'deleteComment') {
-            (new Comment())->executeDeleteComment();
+            
+        }elseif ($_GET['action'] === 'User') { 
+            (new User())->executeUser($identifier);
             
         }elseif ($_GET['action'] === 'contact') {           
             (new Contact())->execute(); 
@@ -97,21 +95,17 @@ try {
             (new HomeAdmin())->showHomeAdmin(); 
             
         }elseif ($_GET['action'] === 'valide') { 
-            (new HomeAdmin())->executeValide();
-
-        }elseif ($_GET['action'] === 'User') { 
-            (new User())->executeUser($identifier);
-
+            (new HomeAdmin())->executeValide();        
 
         } else {
             throw new Exception("La page que vous recherchez n'existe pas.");
         }    
 
-    } else {
-        (new Homepage())->execute();    
-    }
-} catch (Exception $e) {
-    $errorMessage = $e->getMessage();
+        } else {
+            (new Homepage())->execute();    
+        }
+    } catch (Exception $e) {
+        $errorMessage = $e->getMessage();
 
-    require('templates/error.php');
-}
+        require('templates/error.php');
+    }
