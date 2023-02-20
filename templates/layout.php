@@ -36,7 +36,6 @@
             </div>
         </nav>   
     <?= $content ?>
-    </body>
-</html>    
+      
         
     

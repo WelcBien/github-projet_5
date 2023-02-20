@@ -12,7 +12,7 @@
                         <h3>Sur les réseaux sociaux</h3>
                         <ul class="list-inline text-center">
                             <li class="list-inline-item">
-                                <a href="https://github.com/WelcDev/Welc_Project/issues" target="_blank">
+                                <a href="https://github.com/WelcBien/github-projet_5" target="_blank">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-github fa-stack-1x fa-inverse"></i>
@@ -58,3 +58,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="templates/assets/js/scripts.js"></script>
+    </body>
+</html>  
