@@ -12,7 +12,7 @@ class CommentRepository
     public function commentValide($valide) 
     {
         $statement = $this->connection->getConnection()->prepare(
-            'UPDATE comments SET valide = 1 WHERE id = ?'
+            "UPDATE comments SET valide = 1 WHERE id = ?"
         );
         $affectedLines = $statement->execute([$valide]);
 
@@ -38,7 +38,6 @@ class CommentRepository
 
             $comments[] = $comment;
         }
-
         return $comments;
     }
 
@@ -67,7 +66,7 @@ class CommentRepository
     public function createComment(string $post, string $comment): bool
     {
         $statement = $this->connection->getConnection()->prepare(
-            'INSERT INTO comments(posts_id, comment, comment_date, users_id, valide) VALUES(?, ?, NOW(), ?, false)'
+            "INSERT INTO comments(posts_id, comment, comment_date, users_id, valide) VALUES(?, ?, NOW(), ?, false)"
         );        
 
         $affectedLines = $statement->execute([$post, $comment, $_SESSION['id']]);
@@ -78,7 +77,7 @@ class CommentRepository
     public function updateComment(string $identifier, string $comment): bool
     {
         $statement = $this->connection->getConnection()->prepare(
-            'UPDATE comments SET comment = ? WHERE id = ?'
+            "UPDATE comments SET comment = ? WHERE id = ?"
         );
         $affectedLines = $statement->execute([$comment, $identifier]);
 
@@ -89,7 +88,7 @@ class CommentRepository
     public function deleteComment(string $identifier): int
     {
         $statement = $this->connection->getConnection()->prepare(
-            'DELETE FROM comments WHERE id =?'
+            "DELETE FROM comments WHERE id = ?"
         );
         $affectedLines = $statement->execute([$identifier]);
 
@@ -102,8 +101,7 @@ class CommentRepository
         $statement = $this->connection->getConnection()->query(
             "SELECT id, comment, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS 
             french_creation_date, posts_id FROM comments WHERE valide != 1 ORDER BY comment_date DESC"
-        );
-        
+        );        
         $comments = [];
         while (($row = $statement->fetch())) {
             $comment = new Comment();

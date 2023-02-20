@@ -59,7 +59,7 @@ class UserRepository
     public function register($pseudo, $firstname, $lastname, $email, $password) 
     {
         $statement = $this->connection->getConnection()->prepare(
-            'INSERT INTO users (pseudo, firstname, lastname, email, password) VALUES ( ?, ?, ?, ?, ?)'
+            "INSERT INTO users (pseudo, firstname, lastname, email, password) VALUES ( ?, ?, ?, ?, ?)"
         );
         $statement->execute([$pseudo, $firstname, $lastname, $email, $password]);
 
@@ -70,7 +70,7 @@ class UserRepository
     public function userExist($pdeudo)
     {
         $statement = $this->connection->getConnection()->prepare(
-            'SELECT * FROM users WHERE pseudo = ?'
+            "SELECT * FROM users WHERE pseudo = ?"
         );
         $statement->execute([$pdeudo]);        
         
@@ -81,7 +81,7 @@ class UserRepository
     public function connectUser($pseudo)
     { 
         $statement = $this->connection->getConnection()->prepare(
-            'SELECT * FROM users WHERE pseudo = ?'
+            "SELECT * FROM users WHERE pseudo = ?"
         );
         $statement->execute([$pseudo]);
 
@@ -91,7 +91,7 @@ class UserRepository
     public function password_verify($password)
     {
         $statement = $this->connection->getConnection()->prepare(
-            'SELECT * FROM users WHERE password = ?'
+            "SELECT * FROM users WHERE password = ?"
         );
         $statement->execute(['password_verify', $password]);
 

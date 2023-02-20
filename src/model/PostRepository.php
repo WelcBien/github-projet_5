@@ -51,7 +51,7 @@ french_creation_date FROM posts ORDER BY creation_date DESC LIMIT 0, 9"
     public function createPost(string $title, string $chapo, string $content, string $author, int $user_id): int
     {
         $statement = $this->connection->getConnection()->prepare(
-            'INSERT INTO posts(title, chapo, content, author, creation_date, users_id) VALUES(?, ?, ?, ?, NOW(), ?)'
+            "INSERT INTO posts(title, chapo, content, author, creation_date, users_id) VALUES(?, ?, ?, ?, NOW(), ?)"
         );        
 
         $affectedLines = $statement->execute([$title, $chapo, $content, $author, $user_id]);
@@ -62,7 +62,7 @@ french_creation_date FROM posts ORDER BY creation_date DESC LIMIT 0, 9"
     public function updatePost(string $title, string $chapo, string $content, string $author, int $id): int
     {
         $statement = $this->connection->getConnection()->prepare(
-            'UPDATE posts SET title = ?, chapo = ?, content = ?, author = ? WHERE id = ?'
+            "UPDATE posts SET title = ?, chapo = ?, content = ?, author = ? WHERE id = ?"
         );
         $affectedLines = $statement->execute([$title, $chapo, $content, $author, $id]);
 
