@@ -10,7 +10,6 @@ class User
     public function executeUser(string $identifier)
     {
         $connection = new DatabaseConnection();
-
         $userRepository = new UserRepository();
         $userRepository->connection = $connection;
         $user = $userRepository->getUser($identifier);        
@@ -24,13 +23,13 @@ class User
     }
     public function traitementSignup()
     {
-       if(!empty($_POST['pseudo']) && !empty($_POST['lastname']) && !empty($_POST['firstname']) && !empty($_POST['password']) && !empty($_POST['email'])) 
+       if (!empty($_POST['pseudo']) && !empty($_POST['lastname']) && !empty($_POST['firstname']) && !empty($_POST['password']) && !empty($_POST['email'])) 
        {     
         $connection = new DatabaseConnection();
         $userRepository = new UserRepository();
         $userRepository->connection = $connection;
         
-        if($userRepository->userExist($_POST['pseudo']))
+        if ($userRepository->userExist($_POST['pseudo']))
         {
             throw new \Exception('Ce pseudo existe déjà sur le site.');    
 
@@ -52,7 +51,7 @@ class User
    
     public function traitementLogin()
      {
-        if(!empty($_POST['pseudo']) && !empty($_POST['password'])) 
+        if (!empty($_POST['pseudo']) && !empty($_POST['password'])) 
         { 
             $connection = new DatabaseConnection();
             $userRepository = new UserRepository();
@@ -60,7 +59,7 @@ class User
 
             $user = $userRepository->userExist($_POST['pseudo']);        
             
-            if(password_verify($_POST['password'], $user['password'])) 
+            if (password_verify($_POST['password'], $user['password'])) 
             {                     
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo']; 

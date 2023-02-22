@@ -478,6 +478,10 @@ iframe {
   border: 0;
 }
 
+.msg_b {
+  color: green;
+}
+
 summary {
   display: list-item;
   cursor: pointer;

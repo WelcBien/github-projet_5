@@ -10,6 +10,9 @@ class HomeAdmin
     public function showHomeAdmin()
 
     {
+        if(!isset($_SESSION['id']) || $_SESSION['admin'] != 1) {
+            throw new \Exception("Vous devez être connecté");
+        }
         $connection = new DatabaseConnection();
 
         $commentRepository = new CommentRepository();
@@ -55,5 +58,3 @@ class HomeAdmin
     }
 
 }
-
-

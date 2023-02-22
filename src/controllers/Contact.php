@@ -13,14 +13,14 @@ class Contact
     }
     public function traitement()
     {
-       if(!empty($_POST['lastname']) && !empty($_POST['firstname']) && !empty($_POST['email']) && !empty($_POST['msg'])) 
+       if (!empty($_POST['lastname']) && !empty($_POST['firstname']) && !empty($_POST['email']) && !empty($_POST['msg'])) 
        {       
         $lastname = htmlspecialchars($_POST['lastname']);
         $firstname = htmlspecialchars($_POST['firstname']);    
         $email = htmlspecialchars($_POST['email']);
         $msg = htmlspecialchars($_POST['msg']);                
         
-            if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
             }else{
                 throw new \Exception('Email non valide');                

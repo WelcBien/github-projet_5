@@ -10,6 +10,9 @@ class Post
 {
     public function showPost(string $identifier)
     {
+        if(!isset($_SESSION['id'])) {
+            throw new \Exception("Vous devez être connecté");
+        }
         $connection = new DatabaseConnection();
         $postRepository = new PostRepository();
         $postRepository->connection = $connection;
@@ -27,7 +30,10 @@ class Post
         require_once('templates/addPost.php');
     }
     public function executeAddPost()
-    {        
+    { 
+        if(!isset($_SESSION['id']) || $_SESSION['admin'] != 1) {
+            throw new \Exception("Vous devez être connecté");
+        }       
         $title = null;
         $chapo = null;
         $content = null;
@@ -53,7 +59,10 @@ class Post
     }
 
     public function executeDeletePost()
-    {       
+    { 
+        if(!isset($_SESSION['id']) || $_SESSION['admin'] != 1) {
+            throw new \Exception("Vous devez être connecté");
+        }      
         if (isset($_GET['id']) &&!empty($_GET['id']))
          {            
               $id = $_GET['id'];          
@@ -73,7 +82,6 @@ class Post
     }
 
     public function showUpdatePost($id)
-
     {
         $connection = new DatabaseConnection();
         $postRepository = new PostRepository();
@@ -84,6 +92,9 @@ class Post
     }
     public function executeUpdatePost()
     {
+        if(!isset($_SESSION['id']) || $_SESSION['admin'] != 1) {
+            throw new \Exception("Vous devez être connecté");
+        }
         $title = null;
         $chapo = null;
         $content = null;

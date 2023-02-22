@@ -18,7 +18,10 @@ class Comment
     }
 
     public function executeAddComment(string $post, array $input)
-    {        
+    { 
+        if(!isset($_SESSION['id'])) {
+            throw new \Exception("Vous devez être connecté");
+        }       
         $comment = null;        
         if (!empty($input['comment'])) {            
             $comment = $input['comment'];            
@@ -37,7 +40,10 @@ class Comment
     }
 
     public function executeDeleteComment()
-    {       
+    { 
+        if(!isset($_SESSION['id']) || $_SESSION['admin'] != 1) {
+            throw new \Exception("Vous devez être connecté");
+        }      
         if (isset($_GET['id']) &&!empty($_GET['id']))
          {            
               $id = $_GET['id'];          
@@ -58,7 +64,9 @@ class Comment
 
     public function executeUpdateComment(string $identifier, ?array $input)
     {
-        // Il gère la soumission du formulaire lorsqu'il y a une entrée.
+        if(!isset($_SESSION['id']) || $_SESSION['admin'] != 1) {
+            throw new \Exception("Vous devez être connecté");
+        }
         if ($input !== null) {            
             $comment = null;                
             if (!empty($input['comment'])) {               
