@@ -19,10 +19,10 @@
     <main class="mb-4">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="col-md-10 col-lg-8 col-xl-7">                
                     <?php if(isset($_GET['send'])) {?>
                     <p class="alert alert-success">Votre message a bien été envoyé</p>                    
-                    <?php } ?>
+                    <?php } ?>                    
                     <p>Souhaitez-vous entrer en contact ? Remplissez le formulaire ci-dessous pour m'envoyer un message et je vous répondrai dans les plus brefs délais.</p>
                     <div class="my-5">
                         <br><br>

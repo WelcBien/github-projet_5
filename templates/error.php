@@ -15,4 +15,4 @@
 
     <?php require('layout.php') ?>
     <!-- Footer-->        
-    <?php require('footer.php'); ?>    
+    <?php require('footer.php'); ?>   

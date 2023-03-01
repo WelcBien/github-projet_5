@@ -20,7 +20,7 @@ class Comment
     public function executeAddComment(string $post, array $input)
     { 
         if(!isset($_SESSION['id'])) {
-            throw new \Exception("Vous devez être connecté");
+            throw new \Exception('Vous devez être connecté');
         }       
         $comment = null;        
         if (!empty($input['comment'])) {            
@@ -42,7 +42,7 @@ class Comment
     public function executeDeleteComment()
     { 
         if(!isset($_SESSION['id']) || $_SESSION['admin'] != 1) {
-            throw new \Exception("Vous devez être connecté");
+            throw new \Exception('Vous devez être connecté');
         }      
         if (isset($_GET['id']) &&!empty($_GET['id']))
          {            
@@ -65,7 +65,7 @@ class Comment
     public function executeUpdateComment(string $identifier, ?array $input)
     {
         if(!isset($_SESSION['id']) || $_SESSION['admin'] != 1) {
-            throw new \Exception("Vous devez être connecté");
+            throw new \Exception('Vous devez être connecté');
         }
         if ($input !== null) {            
             $comment = null;                
@@ -90,7 +90,7 @@ class Comment
         $commentRepository->connection = new DatabaseConnection();
         $comment = $commentRepository->getComment($identifier);
         if ($comment === null) {
-            throw new \Exception("Le commentaire $identifier n'existe pas.");
+            throw new \Exception('Le commentaire $identifier n\'existe pas.');
         }
 
         require('templates/updateComment.php');
